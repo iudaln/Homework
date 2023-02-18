@@ -1,0 +1,33 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int get_years(int start, int end)
+{
+    int curr = start;
+    int born, passed;
+    int years = 0;
+    do
+    {
+        born = curr / 3;
+        passed = curr / 4;
+        curr = curr + born - passed;
+        years++;
+    }
+    while (curr < end);
+    return years;
+}
+int main(void)
+{
+    int start, end;
+    start = get_int("Start population: ");
+    while (start < 9)
+    start = get_int("Start population cannot be less than 9. Try again: ");
+    end = get_int("End population: ");
+    while (end < start)
+    end = get_int("End population cannot be less than starting population. Try again: ");
+    if (end == start)
+    printf("Years: 0");
+    else
+    printf("Years: %i\n", get_years(start, end));
+    return 0;
+}
